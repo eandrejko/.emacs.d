@@ -54,14 +54,7 @@
        (concat (getenv "HOME") "/dev")
        (concat (getenv "HOME") "/workspace")))
 
-;; pull in tcc foo
 (require 'magit)
-(add-to-list
- 'load-path
- (concat (file-name-as-directory
-          (cdr (assoc "weatherbill" (magit-list-repos magit-repo-dirs))))
-         "tools/emacs"))
-(require 'tcc)
 
 ;; misc
 (put 'upcase-region 'disabled nil)

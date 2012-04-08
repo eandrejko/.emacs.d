@@ -29,7 +29,7 @@
 ;; friendly colors
 (require 'color-theme)
 (require 'color-theme-solarized)
-(color-theme-solarized-light)
+(color-theme-solarized-dark)
 
 ;; Emacs launched through Spotlight isn't run via a shell and thus
 ;; isn't in an environment where ~/.bash* have run.

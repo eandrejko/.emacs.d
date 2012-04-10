@@ -22,7 +22,8 @@
                                   starter-kit-ruby scpaste gist
                                   clojure-mode clojure-test-mode
                                   markdown-mode yaml-mode paredit
-                                  magit color-theme color-theme-solarized))
+                                  magit color-theme color-theme-solarized
+                                  auto-complete ac-slime))
 
 (ensure-packages my-packages)
 
@@ -62,6 +63,7 @@
 (push '("\\.md$" . markdown-mode) auto-mode-alist)
 (push '("\\.markdown$" . markdown-mode) auto-mode-alist)
 (push '("\\.yml$" . yaml-mode) auto-mode-alist)
+(push '("\\.cljs$" . clojure-mode) auto-mode-alist)
 (column-number-mode t)
 
 ;; no more tabs
@@ -69,19 +71,27 @@
 (setq c-basic-offset 2)
 (setq tab-width 4)
 
+;; auto complete setup
+(require 'auto-complete)
+(global-auto-complete-mode t)
+
 ;; clojure env tweaks
 (require 'clojure-mode)
 (add-hook 'slime-repl-mode-hook 'clojure-mode-font-lock-setup)
 (add-hook 'slime-repl-mode-hook 'esk-turn-on-paredit)
 (define-key clojure-mode-map (kbd "C-c v") 'slime-eval-buffer)
 (global-set-key (kbd "C-c C-j") 'clojure-jack-in)
+;; setup autocomplete for Clojure slime
+(add-hook 'slime-mode-hook 'set-up-slime-ac)
+(require 'midje-mode)
+(add-hook 'clojure-mode-hook 'midje-mode)
 
 ;; configure gist
 ;; don't forget `git config --global github.user`, &c.
-(require 'gist)
-(setq gist-view-gist t)
-(setq gist-use-curl t)
-(push '(slime-repl-mode . "clj") gist-supported-modes-alist)
+;; (require 'gist)
+;; (setq gist-view-gist t)
+;; (setq gist-use-curl t)
+;; (push '(slime-repl-mode . "clj") gist-supported-modes-alist)
 
 (defun lein-deps ()
   (interactive)
@@ -121,3 +131,7 @@
       mac-command-key-is-meta t
       mac-command-modifier 'meta
       mac-option-modifier 'none)
+
+(set-face-attribute 'default nil :height 100)
+
+(require 'hacks)

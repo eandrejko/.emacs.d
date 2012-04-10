@@ -134,4 +134,5 @@
 
 (set-face-attribute 'default nil :height 100)
 
+(add-to-list 'load-path "~/.emacs.d/")
 (require 'hacks)

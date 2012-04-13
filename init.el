@@ -86,6 +86,8 @@
 (require 'midje-mode)
 (add-hook 'clojure-mode-hook 'midje-mode)
 
+(add-hook 'prog-mode-hook (lambda () (add-to-list 'write-file-functions 'delete-trailing-whitespace)))
+
 ;; configure gist
 ;; don't forget `git config --global github.user`, &c.
 ;; (require 'gist)

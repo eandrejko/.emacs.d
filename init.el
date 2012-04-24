@@ -23,7 +23,8 @@
                                   clojure-mode clojure-test-mode
                                   markdown-mode yaml-mode paredit
                                   magit color-theme color-theme-solarized
-                                  auto-complete ac-slime))
+                                  auto-complete ac-slime
+                                  ess projectile))
 
 (ensure-packages my-packages)
 
@@ -124,6 +125,7 @@
    (css . t)
    (emacs-lisp . t)
    (js . t)
+   (R . t)
    (perl . t)
    (python . t)
    (sh . t)))
@@ -138,3 +140,24 @@
 
 (add-to-list 'load-path "~/.emacs.d/")
 (require 'hacks)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(org-src-fontify-natively t))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
+
+;;(set-face-attribute 'default nil :family "Anonymous Pro" :height 120)
+(set-face-attribute 'default nil :family "Monaco" :height 90)
+
+(require 'projectile)
+(projectile-global-mode) ;; to enable in all buffers
+
+;; tab width should be 4 in most languages
+(setq tab-width 4)

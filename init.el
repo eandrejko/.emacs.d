@@ -24,7 +24,8 @@
                                   markdown-mode yaml-mode paredit
                                   magit color-theme color-theme-solarized
                                   auto-complete ac-slime
-                                  ess projectile))
+                                  ess projectile
+                                  midje-mode))
 
 (ensure-packages my-packages)
 

@@ -162,3 +162,6 @@
 
 ;; tab width should be 4 in most languages
 (setq tab-width 4)
+
+(add-to-list 'load-path "~/.emacs.d/google-maps/")
+(require 'google-maps)

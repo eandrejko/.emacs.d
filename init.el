@@ -170,6 +170,12 @@
 (setq haskell-font-lock-symbols t)
 
 ;; these additions from https://github.com/magnars/ of EmacsRocks fame
+;;
+;; git submodule add https://github.com/magnars/mark-multiple.el.git vendor/mark-multiple
+;; git submodule add https://github.com/magnars/expand-region.el.git vendor/expand-region
+;; git submodule add https://github.com/magnars/annoying-arrows-mode.el.git vendor/annoying-arrows
+;; git submodule add https://github.com/winterTTr/ace-jump-mode vendor/ace-jump-mode
+
 (add-to-list 'load-path "~/.emacs.d/vendor/mark-multiple/")
 (require 'mark-more-like-this)
 

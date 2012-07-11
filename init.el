@@ -168,3 +168,39 @@
 (require 'google-maps)
 
 (setq haskell-font-lock-symbols t)
+
+;; these additions from https://github.com/magnars/ of EmacsRocks fame
+(add-to-list 'load-path "~/.emacs.d/vendor/mark-multiple/")
+(require 'mark-more-like-this)
+
+(global-set-key (kbd "C-<") 'mark-previous-like-this)
+(global-set-key (kbd "C->") 'mark-next-like-this)
+(global-set-key (kbd "C-M-m") 'mark-more-like-this) ; like the other two, but takes an argument (negative is previous)
+(global-set-key (kbd "C-*") 'mark-all-like-this)
+
+(add-to-list 'load-path "~/.emacs.d/vendor/expand-region/")
+(require 'expand-region)
+(global-set-key (kbd "C-=") 'er/expand-region)
+
+;; Annoying arrows mode
+(add-to-list 'load-path "~/.emacs.d/vendor/annoying-arrows/")
+(require 'annoying-arrows-mode)
+(global-annoying-arrows-mode)
+
+;; Push mark when using ido-imenu
+(defvar push-mark-before-goto-char nil)
+
+(defadvice goto-char (before push-mark-first activate)
+  (when push-mark-before-goto-char
+    (push-mark)))
+
+(defun ido-imenu-push-mark ()
+  (interactive)
+  (let ((push-mark-before-goto-char t))
+    (ido-imenu)))
+
+;; ace jump mode
+(add-to-list 'load-path "~/.emacs.d/vendor/ace-jump-mode/")
+(require 'ace-jump-mode)
+;; Quickly jump in document with ace-jump-mode
+(define-key global-map (kbd "C-c SPC") 'ace-jump-mode)

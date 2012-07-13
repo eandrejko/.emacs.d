@@ -23,6 +23,7 @@
                                   clojure-mode clojure-test-mode
                                   markdown-mode yaml-mode paredit
                                   magit color-theme color-theme-solarized
+                                  ess
                                   auto-complete ac-slime))
 
 (ensure-packages my-packages)
@@ -39,6 +40,7 @@
                 "/usr/local/bin" ":"
                 "/usr/local/sbin" ":"
                 "/usr/local/share/python" ":"
+                "/opt/local/bin/" ":"
                 (getenv "PATH")))
 
 ;; Add brew paths to exec-path so things like aspell and markdown can
@@ -47,6 +49,7 @@
 (push "/usr/local/sbin" exec-path)
 (push "/usr/local/bin" exec-path)
 (push (concat (getenv "HOME") "/bin") exec-path)
+(push "/opt/local/bin/" exec-path)
 
 ;; teach magit where to find projects
 (setq magit-repo-dirs
@@ -110,6 +113,8 @@
      "*lein-new*")))
 
 ;; orgy-goodness
+;;(add-to-list 'load-path "~/.emacs.d/org-7.8.11/lisp")
+(require 'org-install)
 (require 'org)
 (add-hook 'org-babel-after-execute-hook 'org-display-inline-images)
 (setq org-hide-leading-stars t)
@@ -124,6 +129,7 @@
    (js . t)
    (perl . t)
    (python . t)
+   (R . t)
    (sh . t)))
 
 ;; set OS X specific variables
@@ -136,3 +142,19 @@
 
 (add-to-list 'load-path "~/.emacs.d/")
 (require 'hacks)
+(put 'ido-exit-minibuffer 'disabled nil)
+
+(require 'ess)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(org-agenda-files (quote ("~/structures/typhoon/typhoon-volatility.org")))
+ '(org-src-fontify-natively t))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )

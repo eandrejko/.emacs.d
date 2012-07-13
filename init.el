@@ -24,7 +24,9 @@
                                   markdown-mode yaml-mode paredit
                                   magit color-theme color-theme-solarized
                                   ess
-                                  auto-complete ac-slime))
+                                  auto-complete ac-slime
+                                  projectile
+                                  midje-mode))
 
 (ensure-packages my-packages)
 
@@ -89,6 +91,8 @@
 (require 'midje-mode)
 (add-hook 'clojure-mode-hook 'midje-mode)
 
+(add-hook 'prog-mode-hook (lambda () (add-to-list 'write-file-functions 'delete-trailing-whitespace)))
+
 ;; configure gist
 ;; don't forget `git config --global github.user`, &c.
 ;; (require 'gist)
@@ -127,6 +131,7 @@
    (css . t)
    (emacs-lisp . t)
    (js . t)
+   (R . t)
    (perl . t)
    (python . t)
    (R . t)
@@ -158,3 +163,72 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(haskell-font-lock-symbols t)
+ '(org-src-fontify-natively t))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
+
+;;(set-face-attribute 'default nil :family "Anonymous Pro" :height 120)
+(set-face-attribute 'default nil :family "Monaco" :height 90)
+
+(require 'projectile)
+(projectile-global-mode) ;; to enable in all buffers
+
+;; tab width should be 4 in most languages
+(setq tab-width 4)
+
+(add-to-list 'load-path "~/.emacs.d/google-maps/")
+(require 'google-maps)
+
+(setq haskell-font-lock-symbols t)
+
+;; these additions from https://github.com/magnars/ of EmacsRocks fame
+;;
+;; git submodule add https://github.com/magnars/mark-multiple.el.git vendor/mark-multiple
+;; git submodule add https://github.com/magnars/expand-region.el.git vendor/expand-region
+;; git submodule add https://github.com/magnars/annoying-arrows-mode.el.git vendor/annoying-arrows
+;; git submodule add https://github.com/winterTTr/ace-jump-mode vendor/ace-jump-mode
+
+(add-to-list 'load-path "~/.emacs.d/vendor/mark-multiple/")
+(require 'mark-more-like-this)
+
+(global-set-key (kbd "C-<") 'mark-previous-like-this)
+(global-set-key (kbd "C->") 'mark-next-like-this)
+(global-set-key (kbd "C-M-m") 'mark-more-like-this) ; like the other two, but takes an argument (negative is previous)
+(global-set-key (kbd "C-*") 'mark-all-like-this)
+
+(add-to-list 'load-path "~/.emacs.d/vendor/expand-region/")
+(require 'expand-region)
+(global-set-key (kbd "C-=") 'er/expand-region)
+
+;; Annoying arrows mode
+(add-to-list 'load-path "~/.emacs.d/vendor/annoying-arrows/")
+(require 'annoying-arrows-mode)
+(global-annoying-arrows-mode)
+
+;; Push mark when using ido-imenu
+(defvar push-mark-before-goto-char nil)
+
+(defadvice goto-char (before push-mark-first activate)
+  (when push-mark-before-goto-char
+    (push-mark)))
+
+(defun ido-imenu-push-mark ()
+  (interactive)
+  (let ((push-mark-before-goto-char t))
+    (ido-imenu)))
+
+;; ace jump mode
+(add-to-list 'load-path "~/.emacs.d/vendor/ace-jump-mode/")
+(require 'ace-jump-mode)
+;; Quickly jump in document with ace-jump-mode
+(define-key global-map (kbd "C-c SPC") 'ace-jump-mode)

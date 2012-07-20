@@ -192,6 +192,11 @@
 
 (setq haskell-font-lock-symbols t)
 
+(set-face-attribute 'default nil
+                    :family "Inconsolata" :height (case system-type
+                                                    ('gnu/linux 95)
+                                                    ('darwin 125)) :weight 'normal)
+
 ;; these additions from https://github.com/magnars/ of EmacsRocks fame
 ;;
 ;; git submodule add https://github.com/magnars/mark-multiple.el.git vendor/mark-multiple

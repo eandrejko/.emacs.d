@@ -26,7 +26,8 @@
                                   ess
                                   auto-complete ac-slime
                                   projectile
-                                  midje-mode))
+                                  midje-mode
+                                  yasnippet))
 
 (ensure-packages my-packages)
 

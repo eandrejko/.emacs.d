@@ -23,9 +23,11 @@
                                   clojure-mode clojure-test-mode
                                   markdown-mode yaml-mode paredit
                                   magit color-theme color-theme-solarized
+                                  ess
                                   auto-complete ac-slime
-                                  ess projectile
-                                  midje-mode))
+                                  projectile
+                                  midje-mode
+                                  yasnippet))
 
 (ensure-packages my-packages)
 
@@ -41,6 +43,7 @@
                 "/usr/local/bin" ":"
                 "/usr/local/sbin" ":"
                 "/usr/local/share/python" ":"
+                "/opt/local/bin/" ":"
                 (getenv "PATH")))
 
 ;; Add brew paths to exec-path so things like aspell and markdown can
@@ -49,6 +52,7 @@
 (push "/usr/local/sbin" exec-path)
 (push "/usr/local/bin" exec-path)
 (push (concat (getenv "HOME") "/bin") exec-path)
+(push "/opt/local/bin/" exec-path)
 
 ;; teach magit where to find projects
 (setq magit-repo-dirs
@@ -114,6 +118,8 @@
      "*lein-new*")))
 
 ;; orgy-goodness
+;;(add-to-list 'load-path "~/.emacs.d/org-7.8.11/lisp")
+(require 'org-install)
 (require 'org)
 (add-hook 'org-babel-after-execute-hook 'org-display-inline-images)
 (setq org-hide-leading-stars t)
@@ -129,6 +135,7 @@
    (R . t)
    (perl . t)
    (python . t)
+   (R . t)
    (sh . t)))
 
 ;; set OS X specific variables
@@ -141,15 +148,33 @@
 
 (add-to-list 'load-path "~/.emacs.d/")
 (require 'hacks)
+(put 'ido-exit-minibuffer 'disabled nil)
+
+(require 'ess)
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(haskell-font-lock-symbols t t)
+ '(org-agenda-files (quote ("~/structures/typhoon/typhoon-volatility.org")))
+ '(org-src-fontify-natively t))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  '(ido-max-work-directory-list 150)
  '(ido-max-work-file-list 500)
- '(org-src-fontify-natively t))
+ '(org-src-fontify-natively t)
+ '(haskell-font-lock-symbols t)
+ '(org-src-fontify-natively t)
+ '(org-export-babel-evaluate nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -170,6 +195,11 @@
 (require 'google-maps)
 
 (setq haskell-font-lock-symbols t)
+
+(set-face-attribute 'default nil
+                    :family "Inconsolata" :height (case system-type
+                                                    ('gnu/linux 95)
+                                                    ('darwin 125)) :weight 'normal)
 
 ;; these additions from https://github.com/magnars/ of EmacsRocks fame
 ;;
@@ -211,4 +241,4 @@
 (add-to-list 'load-path "~/.emacs.d/vendor/ace-jump-mode/")
 (require 'ace-jump-mode)
 ;; Quickly jump in document with ace-jump-mode
-(define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
+(define-key global-map (kbd "C-x SPC") 'ace-jump-mode)

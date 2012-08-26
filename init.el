@@ -146,7 +146,9 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(haskell-font-lock-symbols t)
+ '(haskell-font-lock-symbols t t)
+ '(ido-max-work-directory-list 150)
+ '(ido-max-work-file-list 500)
  '(org-src-fontify-natively t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

@@ -161,6 +161,11 @@
  '(org-agenda-files (quote ("~/structures/typhoon/typhoon-volatility.org")))
  '(org-export-babel-evaluate nil)
  '(org-src-fontify-natively t)
+ '(ido-max-work-directory-list 150)
+ '(ido-max-work-file-list 500)
+ '(org-src-fontify-natively t)
+ '(haskell-font-lock-symbols t)
+ '(org-src-fontify-natively t)
  '(yas/root-directory "~/.emacs.d/snippets/" nil (yasnippet)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

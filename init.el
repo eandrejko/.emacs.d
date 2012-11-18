@@ -125,6 +125,7 @@
 (require 'org)
 (add-hook 'org-babel-after-execute-hook 'org-display-inline-images)
 (setq org-hide-leading-stars t)
+(add-hook 'doc-view-mode-hook 'auto-revert-mode)
 
 ;; babel-foo
 (require 'ob-clojure)
@@ -158,31 +159,24 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(haskell-font-lock-symbols t t)
  '(org-agenda-files (quote ("~/structures/typhoon/typhoon-volatility.org")))
- '(org-src-fontify-natively t))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
+ '(org-export-babel-evaluate nil)
+ '(org-src-fontify-natively t)
  '(ido-max-work-directory-list 150)
  '(ido-max-work-file-list 500)
  '(org-src-fontify-natively t)
  '(haskell-font-lock-symbols t)
  '(org-src-fontify-natively t)
- '(org-export-babel-evaluate nil))
+ '(yas/root-directory "~/.emacs.d/snippets/" nil (yasnippet)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
+
 
 ;;(set-face-attribute 'default nil :family "Anonymous Pro" :height 120)
 (set-face-attribute 'default nil :family "Monaco" :height 90)

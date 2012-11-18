@@ -44,6 +44,7 @@
                 "/usr/local/sbin" ":"
                 "/usr/local/share/python" ":"
                 "/opt/local/bin/" ":"
+                "/usr/texbin" ":"
                 (getenv "PATH")))
 
 ;; Add brew paths to exec-path so things like aspell and markdown can
@@ -53,6 +54,7 @@
 (push "/usr/local/bin" exec-path)
 (push (concat (getenv "HOME") "/bin") exec-path)
 (push "/opt/local/bin/" exec-path)
+(push "/usr/texbin/" exec-path)
 
 ;; teach magit where to find projects
 (setq magit-repo-dirs
@@ -242,3 +244,8 @@
 (require 'ace-jump-mode)
 ;; Quickly jump in document with ace-jump-mode
 (define-key global-map (kbd "C-x SPC") 'ace-jump-mode)
+
+;; additional submodules
+;; git submodule add https://github.com/mbunkus/simple-rtm.git vendor/simple-rtm
+(add-to-list 'load-path "~/.emacs.d/vendor/simple-rtm/lisp")
+(autoload 'simple-rtm-mode "simple-rtm" "Interactive mode for Remember The Milk" t)

@@ -7,3 +7,5 @@ swank
 tramp
 url
 /ac-comphist.dat
+/.rtm-auth-token
+/.Rhistory

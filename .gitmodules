@@ -10,3 +10,6 @@
 [submodule "vendor/ace-jump-mode"]
 	path = vendor/ace-jump-mode
 	url = https://github.com/winterTTr/ace-jump-mode
+[submodule "vendor/simple-rtm"]
+	path = vendor/simple-rtm
+	url = https://github.com/mbunkus/simple-rtm.git

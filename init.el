@@ -45,6 +45,7 @@
                 "/usr/local/share/python" ":"
                 "/opt/local/bin/" ":"
                 "usr/local/texlive/2012/bin/universal-darwin/" ":"
+                "/usr/texbin" ":"
                 (getenv "PATH")))
 
 ;; Add brew paths to exec-path so things like aspell and markdown can
@@ -55,6 +56,7 @@
 (push (concat (getenv "HOME") "/bin") exec-path)
 (push "/opt/local/bin/" exec-path)
 (push "/usr/local/texlive/2012/bin/universal-darwin" exec-path)
+(push "/usr/texbin/" exec-path)
 
 ;; teach magit where to find projects
 (setq magit-repo-dirs
@@ -244,3 +246,8 @@
       (replace-match (number-to-string (1+ (string-to-number (match-string 0))))))
 
 (global-set-key (kbd "C-c +") 'increment-number-at-point)
+
+;; additional submodules
+;; git submodule add https://github.com/mbunkus/simple-rtm.git vendor/simple-rtm
+(add-to-list 'load-path "~/.emacs.d/vendor/simple-rtm/lisp")
+(autoload 'simple-rtm-mode "simple-rtm" "Interactive mode for Remember The Milk" t)

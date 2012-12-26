@@ -44,6 +44,7 @@
                 "/usr/local/sbin" ":"
                 "/usr/local/share/python" ":"
                 "/opt/local/bin/" ":"
+                "usr/local/texlive/2012/bin/universal-darwin/" ":"
                 (getenv "PATH")))
 
 ;; Add brew paths to exec-path so things like aspell and markdown can
@@ -53,6 +54,7 @@
 (push "/usr/local/bin" exec-path)
 (push (concat (getenv "HOME") "/bin") exec-path)
 (push "/opt/local/bin/" exec-path)
+(push "/usr/local/texlive/2012/bin/universal-darwin" exec-path)
 
 ;; teach magit where to find projects
 (setq magit-repo-dirs
@@ -157,14 +159,11 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(ess-fancy-comments nil)
  '(haskell-font-lock-symbols t t)
- '(org-agenda-files (quote ("~/structures/typhoon/typhoon-volatility.org")))
- '(org-export-babel-evaluate nil)
- '(org-src-fontify-natively t)
  '(ido-max-work-directory-list 150)
  '(ido-max-work-file-list 500)
- '(org-src-fontify-natively t)
- '(haskell-font-lock-symbols t)
+ '(org-export-babel-evaluate nil)
  '(org-src-fontify-natively t)
  '(yas/root-directory "~/.emacs.d/snippets/" nil (yasnippet)))
 (custom-set-faces
@@ -177,7 +176,7 @@
 
 
 ;;(set-face-attribute 'default nil :family "Anonymous Pro" :height 120)
-(set-face-attribute 'default nil :family "Monaco" :height 90)
+(set-face-attribute 'default nil :family "Monaco" :height 110)
 
 (require 'projectile)
 (projectile-global-mode) ;; to enable in all buffers
@@ -190,10 +189,10 @@
 
 (setq haskell-font-lock-symbols t)
 
-(set-face-attribute 'default nil
-                    :family "Inconsolata" :height (case system-type
-                                                    ('gnu/linux 95)
-                                                    ('darwin 125)) :weight 'normal)
+;; (set-face-attribute 'default nil
+;;                     :family "Inconsolata" :height (case system-type
+;;                                                     ('gnu/linux 95)
+;;                                                     ('darwin 125)) :weight 'normal)
 
 ;; these additions from https://github.com/magnars/ of EmacsRocks fame
 ;;
@@ -236,3 +235,12 @@
 (require 'ace-jump-mode)
 ;; Quickly jump in document with ace-jump-mode
 (define-key global-map (kbd "C-x SPC") 'ace-jump-mode)
+
+(defun increment-number-at-point ()
+      (interactive)
+      (skip-chars-backward "0123456789")
+      (or (looking-at "[0123456789]+")
+          (error "No number at point"))
+      (replace-match (number-to-string (1+ (string-to-number (match-string 0))))))
+
+(global-set-key (kbd "C-c +") 'increment-number-at-point)

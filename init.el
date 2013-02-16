@@ -251,3 +251,7 @@
 ;; git submodule add https://github.com/mbunkus/simple-rtm.git vendor/simple-rtm
 (add-to-list 'load-path "~/.emacs.d/vendor/simple-rtm/lisp")
 (autoload 'simple-rtm-mode "simple-rtm" "Interactive mode for Remember The Milk" t)
+
+;; restore window configuration
+;; http://irreal.org/blog/?p=1557
+(winner-mode 1)

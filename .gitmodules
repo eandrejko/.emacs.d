@@ -13,3 +13,6 @@
 [submodule "vendor/simple-rtm"]
 	path = vendor/simple-rtm
 	url = https://github.com/mbunkus/simple-rtm.git
+[submodule "vendor/nxhtml"]
+	path = vendor/nxhtml
+	url = git://github.com/emacsmirror/nxhtml.git
